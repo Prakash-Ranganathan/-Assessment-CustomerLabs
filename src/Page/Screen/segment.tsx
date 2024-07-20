@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import PopupSegment from './popup-segment'
-import HeaderNav from './header'
 import './segment.css'
 function Segment() {
     const [isPopup, setIsPopup] = useState<boolean>(false)

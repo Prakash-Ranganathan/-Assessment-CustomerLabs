@@ -35,29 +35,29 @@ function PopupSegment({ onClose }: PopupSegmentProps) {
     };
 
     //api calling 
-    const handleSubmitdata =  async() => {
+    const handleSubmitdata = async () => {
         const datalist = segmentList.map((option: any) => {
             let key = option.value;
             let ans = option.label;
             return { [key]: ans };
-          });
-    
-        const dataObject:any = {
-          "segment_name": nameofSegment,
-          "schema": datalist
+        });
+
+        const dataObject: any = {
+            "segment_name": nameofSegment,
+            "schema": datalist
         };
-    
+
         try {
-          const response =  await axios?.post('/api', dataObject);
-          toast.success(`Data sent successfully: ${JSON.stringify(response.data)}`);
-          // Clear the form
-          setSegmentList([]);
-          setNameofSegment('');
+            const response = await axios?.post('/api', dataObject);
+            toast.success(`Data sent successfully: ${JSON.stringify(response.data)}`);
+            // Clear the form
+            setSegmentList([]);
+            setNameofSegment('');
         } catch (error) {
-          toast.error(`Error sending data:, ${error}`);
+            toast.error(`Error sending data:, ${error}`);
         }
-      };
-//handling newly added dropdown values change
+    };
+    //handling newly added dropdown values change
     const handleAddsegment = (index: number, value: string) => {
         const selectedOption = SCHEMA_DATA.find((item) => item.value === value);
         if (selectedOption) {
@@ -66,7 +66,7 @@ function PopupSegment({ onClose }: PopupSegmentProps) {
             setSegmentList(updatedSegmentList);
         }
     };
-//maping segment datalist to dropdown
+    //maping segment datalist to dropdown
     useEffect(() => {
         const dropDownOptions = SCHEMA_DATA.filter((option) =>
             !segmentList.some((item) => item.value === option.value)
@@ -158,9 +158,9 @@ function PopupSegment({ onClose }: PopupSegmentProps) {
                             ))}
                         </select>
                         <button className='border border-0 rounded-0 p-2 m-1' style={{ backgroundColor: '#e5f0f8' }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-dash" viewBox="0 0 16 16">
-                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
-                                    </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-dash" viewBox="0 0 16 16">
+                                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+                            </svg>
                         </button>
                     </form>
                     <div>
@@ -177,7 +177,7 @@ function PopupSegment({ onClose }: PopupSegmentProps) {
                     <button className='border border-0 p-2 mx-1' style={{ background: "light", color: "red", borderRadius: "4px" }} onClick={onClose}>Close</button>
                 </div>
             </div>
-      <ToastContainer />
+            <ToastContainer />
         </div>
     );
 }
